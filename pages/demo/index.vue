@@ -1,0 +1,39 @@
+<script setup lang="ts">
+import { useToast } from "primevue/usetoast";
+
+const selectedCity = ref();
+const cities = ref([
+  { name: 'New York', code: 'NY' },
+  { name: 'Rome', code: 'RM' },
+  { name: 'London', code: 'LDN' },
+  { name: 'Istanbul', code: 'IST' },
+  { name: 'Paris', code: 'PRS' }
+]);
+
+const toast = useToast();
+const toggleDarkMode = () => {
+  document.documentElement.classList.toggle('my-app-dark');
+};
+const onClick = () => {
+  toast.add({ severity: 'info', summary: 'Info', detail: 'Message Content', life: 3000 });
+};
+</script>
+<template>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="py-6">
+      <Button label="Verify" />
+      <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Welcome to Nuxt.js!</h1>
+      <p class="mt-2 text-lg text-gray-600 dark:text-gray-400">
+        For a guide and recipes on how to configure / customize this project, check out the <a href="https://nuxtjs.org" class="text-blue-600">Nuxt.js documentation</a>.
+      </p>
+      <div class="card flex justify-center">
+        <Select v-model="selectedCity" :options="cities" optionLabel="name" placeholder="Select a City" class="w-full md:w-56" />
+      </div>
+      <div class="flex justify-center mt-4 gap-5">
+        <Button label="Toggle Dark Mode" @click="toggleDarkMode()" />
+        <Button @click="onClick" class="bg-red-500">Show notify</Button>
+        <Icon name="uil:github"/>
+      </div>
+    </div>
+  </div>
+</template>
